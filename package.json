@@ -12,7 +12,8 @@
     "type-check": "pnpm -r type-check",
     "clean:deps": "node scripts/clean-deps.js",
     "clean:all": "pnpm clean:deps && node scripts/clean-dist.js",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "author": "Juan Camilo Ospina Quintero",
   "license": "ISC",

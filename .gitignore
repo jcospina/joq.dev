@@ -23,7 +23,7 @@ yarn-error.log*
 Thumbs.db
 
 # Husky hooks (generated)
-.husky/_
+.husky/
 
 # Lint/format cache
 .eslintcache
