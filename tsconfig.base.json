@@ -10,10 +10,10 @@
     "strictBindCallApply": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,    
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "types": ["packages/types/src/index.ts"]

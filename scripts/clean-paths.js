@@ -11,7 +11,7 @@ export async function cleanPaths(paths, options = {}) {
   const { recursive = true, force = true } = options;
 
   await Promise.all(
-    paths.map(async (p) => {
+    paths.map(async p => {
       try {
         await rm(p, { recursive, force });
         console.log(`Removed: ${p}`);
@@ -21,6 +21,6 @@ export async function cleanPaths(paths, options = {}) {
           console.error(`Error removing ${p}:`, err);
         }
       }
-    })
+    }),
   );
 }

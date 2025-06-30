@@ -1,12 +1,7 @@
-
-import {rm} from 'fs/promises';
+import { cleanPaths } from './clean-paths';
 
 async function cleanDeps() {
-  const paths = [        
-        'dist',
-        'apps/**/dist',
-        'packages/**/dist',
-    ];
+  const paths = ['dist', 'apps/**/dist', 'packages/**/dist'];
   await cleanPaths(paths);
   console.log('✅ Dist files removed.');
 }
