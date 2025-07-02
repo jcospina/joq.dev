@@ -22,8 +22,9 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
-# Husky hooks (generated)
+# Ggenerated
 .husky/
+.turbo/
 
 # Lint/format cache
 .eslintcache

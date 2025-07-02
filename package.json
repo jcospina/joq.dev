@@ -5,11 +5,12 @@
   "description": "Monorepo for joq.dev",
   "packageManager": "pnpm@10.12.4",
   "scripts": {
-    "web:dev": "pnpm --filter web dev",
-    "web:build": "pnpm --filter web build",
-    "web:preview": "pnpm --filter web preview",
-    "lint": "pnpm -r lint",
-    "type-check": "pnpm -r type-check",
+    "web:dev": "turbo run dev --filter=web",
+    "dev": "echo \"Please run 'pnpm [app]:dev' to start a specific app.\"",
+    "build": "turbo run build",
+    "preview": "turbo run preview --filter=web",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
     "clean:deps": "node scripts/clean-deps.js",
     "clean:all": "pnpm clean:deps && node scripts/clean-dist.js",
     "format": "prettier --write .",
@@ -25,6 +26,7 @@
     "husky": "^8.0.0",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
+    "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },
   "lint-staged": {
