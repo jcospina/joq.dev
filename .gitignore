@@ -15,7 +15,7 @@ yarn-error.log*
 *.log
 
 # VSCode & IDEs
-.vscode/
+.vscode/mcp.json
 .idea/
 
 # OS files

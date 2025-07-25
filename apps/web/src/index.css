@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+body {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}

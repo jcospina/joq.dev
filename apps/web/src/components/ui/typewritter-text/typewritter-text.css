@@ -1,0 +1,21 @@
+.typewriter-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 0.125rem; /* ≈2px */
+  height: 1em;
+  background-color: currentColor;
+  margin-left: 0.25rem; /* 4px */
+  transition: opacity 0.1s;
+}
+
+.typewriter-cursor.hidden {
+  opacity: 0;
+}
+
+.typewriter-cursor.visible {
+  opacity: 1;
+}

@@ -4,13 +4,11 @@ export async function createConfig({ tsconfigPath = './tsconfig.json' } = {}) {
     { default: pluginImport },
     { default: pluginUnused },
     { default: pluginComments },
-    { default: pluginPerfectionist },
   ] = await Promise.all([
     import('eslint-plugin-prettier'),
     import('eslint-plugin-import'),
     import('eslint-plugin-unused-imports'),
     import('eslint-plugin-eslint-comments'),
-    import('eslint-plugin-perfectionist'),
   ]);
 
   const js = (await import('@eslint/js')).default;
@@ -60,18 +58,25 @@ export async function createConfig({ tsconfigPath = './tsconfig.json' } = {}) {
           tsconfigRootDir: process.cwd(),
           sourceType: 'module',
           ecmaVersion: 'latest',
+          globals: (await import('globals')).default.browser,
         },
       },
       plugins: {
         import: pluginImport,
         'unused-imports': pluginUnused,
         'eslint-comments': pluginComments,
-        perfectionist: pluginPerfectionist,
+        '@typescript-eslint': tseslint.plugin,
       },
       rules: {
         ...tseslint.configs.recommended[0].rules,
         ...tseslint.configs.recommendedTypeChecked[0].rules,
-        'import/order': ['error', { 'newlines-between': 'always' }],
+        'import/order': [
+          'error',
+          {
+            'newlines-between': 'always',
+            alphabetize: { order: 'asc', caseInsensitive: true },
+          },
+        ],
         'import/no-unresolved': 'error',
         'import/no-duplicates': 'error',
         'unused-imports/no-unused-imports': 'error',
@@ -87,22 +92,10 @@ export async function createConfig({ tsconfigPath = './tsconfig.json' } = {}) {
         'eslint-comments/disable-enable-pair': 'error',
         'eslint-comments/no-unlimited-disable': 'error',
         'eslint-comments/no-unused-disable': 'error',
-        'perfectionist/sort-imports': [
-          'error',
-          {
-            type: 'natural',
-            order: 'asc',
-            groups: [
-              'builtin',
-              'external',
-              'internal',
-              ['parent', 'sibling'],
-              'index',
-              'unknown',
-            ],
-          },
+        '@typescript-eslint/explicit-function-return-type': [
+          'warn',
+          { allowExpressions: true },
         ],
-        '@typescript-eslint/explicit-function-return-type': 'warn',
         '@typescript-eslint/no-floating-promises': 'error',
         '@typescript-eslint/no-misused-promises': 'error',
         '@typescript-eslint/consistent-type-imports': 'error',
