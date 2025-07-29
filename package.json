@@ -11,18 +11,20 @@
     "preview": "turbo run preview --filter=web",
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
-    "clean:deps": "node scripts/clean-deps.js",
-    "clean:all": "pnpm clean:deps && node scripts/clean-dist.js",
+    "clean:deps": "node scripts/clean-deps.mjs",
+    "clean:all": "pnpm clean:deps && node scripts/clean-dist.mjs",
     "format": "prettier --write .",
     "prepare": "husky install"
   },
   "author": "Juan Camilo Ospina Quintero",
   "license": "ISC",
   "dependencies": {
-    "@joq/eslint-config": "workspace:*"
+    "@joq/eslint-config": "workspace:*",
+    "motion": "^12.23.11"
   },
   "devDependencies": {
     "eslint": "^9.3.0",
+    "fast-glob": "^3.3.3",
     "husky": "^8.0.0",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",

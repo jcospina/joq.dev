@@ -1,3 +1,9 @@
 packages:
-  - 'apps/*'
-  - 'packages/config/**'
+  - apps/**
+  - packages/config/**
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - unrs-resolver

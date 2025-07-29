@@ -16,6 +16,9 @@ export default (async () => {
     settings: {
       ...(baseTSConfig.settings || {}),
       'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
         typescript: {
           project: './tsconfig.eslint.json',
           alwaysTryTypes: true,

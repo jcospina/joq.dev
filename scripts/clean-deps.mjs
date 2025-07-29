@@ -1,4 +1,4 @@
-import { cleanPaths } from './clean-paths.js';
+import { cleanPaths } from './clean-paths.mjs';
 
 async function cleanDeps() {
   const paths = [

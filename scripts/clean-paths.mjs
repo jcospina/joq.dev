@@ -1,4 +1,5 @@
 import { rm } from 'fs/promises';
+import fg from 'fast-glob';
 
 /**
  * Remove a list of filesystem paths.
@@ -10,17 +11,13 @@ import { rm } from 'fs/promises';
 export async function cleanPaths(paths, options = {}) {
   const { recursive = true, force = true } = options;
 
+  // Expand globs into real paths
+  const dirs = await fg(paths, { onlyDirectories: true, dot: true });
+
   await Promise.all(
-    paths.map(async p => {
-      try {
-        await rm(p, { recursive, force });
-        console.log(`Removed: ${p}`);
-      } catch (err) {
-        // ignore “not found” errors
-        if (err.code !== 'ENOENT') {
-          console.error(`Error removing ${p}:`, err);
-        }
-      }
+    dirs.map(async dir => {
+      await rm(dir, { recursive, force });
+      console.log(`Removed: ${dir}`);
     }),
   );
 }
