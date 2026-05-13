@@ -1,40 +1,49 @@
 {
-  "name": "joq.dev",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Monorepo for joq.dev",
-  "packageManager": "pnpm@10.12.4",
-  "scripts": {
-    "web:dev": "turbo run dev --filter=web",
-    "dev": "echo \"Please run 'pnpm [app]:dev' to start a specific app.\"",
-    "build": "turbo run build",
-    "preview": "turbo run preview --filter=web",
-    "lint": "turbo run lint",
-    "type-check": "turbo run type-check",
-    "clean:deps": "node scripts/clean-deps.mjs",
-    "clean:all": "pnpm clean:deps && node scripts/clean-dist.mjs",
-    "format": "prettier --write .",
-    "prepare": "husky install"
-  },
-  "author": "Juan Camilo Ospina Quintero",
-  "license": "ISC",
-  "dependencies": {
-    "@joq/eslint-config": "workspace:*",
-    "motion": "^12.23.11"
-  },
-  "devDependencies": {
-    "eslint": "^9.3.0",
-    "fast-glob": "^3.3.3",
-    "husky": "^8.0.0",
-    "lint-staged": "^16.1.2",
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.4",
-    "typescript": "^5.8.3"
-  },
-  "lint-staged": {
-    "apps/web/**/*.{js,ts,tsx,jsx}": "pnpm --filter web lint-staged",
-    "*.{json,md}": [
-      "prettier --write"
-    ]
-  }
+	"name": "joq.dev",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Astro and React starter for joq.dev, deployed as a static Cloudflare Pages site and backed by Sanity CMS.",
+	"packageManager": "npm@11.12.1",
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"scripts": {
+		"dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+		"build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
+		"preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"typecheck": "ASTRO_TELEMETRY_DISABLED=1 astro check && tsc -p tsconfig.test.json --pretty false",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"format": "biome format --write .",
+		"ci": "biome ci .",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{ts,tsx,js,jsx,json,jsonc,css,md}": [
+			"biome check --write --no-errors-on-unmatched"
+		]
+	},
+	"overrides": {
+		"vite": "^7.2.7"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.9",
+		"@astrojs/react": "^5.0.5",
+		"@biomejs/biome": "^2.4.15",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.2",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"astro": "^6.3.2",
+		"husky": "^9.1.7",
+		"jsdom": "^29.1.1",
+		"lint-staged": "^17.0.4",
+		"react": "^19.2.6",
+		"react-dom": "^19.2.6",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.6"
+	}
 }

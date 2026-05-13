@@ -1,34 +1,10 @@
-# Node modules
 node_modules/
-**/node_modules/
-
-# Build output
+.astro/
 dist/
-**/dist/
-*.tsbuildinfo
-
-# Logs and temp files
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+coverage/
 *.log
-
-# VSCode & IDEs
-.vscode/mcp.json
-.idea/
-
-# OS files
 .DS_Store
-Thumbs.db
-
-# Ggenerated
-.husky/
-.turbo/
-
-# Lint/format cache
-.eslintcache
-
-# Environment variables
 .env
 .env.*
+!.env.example
+.tsbuildinfo

@@ -1,0 +1,31 @@
+---
+import { StackList } from "../components/StackList";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const stack = ["Astro", "React", "Cloudflare Pages", "Sanity CMS"];
+---
+
+<BaseLayout
+	title="joq.dev"
+	description="Personal site and writing by Juan Camilo Ospina."
+>
+	<main class="site-shell">
+		<section class="hero" aria-labelledby="hero-title">
+			<p class="eyebrow">joq.dev</p>
+			<h1 id="hero-title">A personal site built for writing and experiments.</h1>
+			<p class="lede">
+				This starter is set up for a fast static site, a CMS-backed blog, and React components
+				where the interface needs them.
+			</p>
+			<StackList items={stack} />
+		</section>
+
+		<section class="status-panel" aria-labelledby="status-title">
+			<div>
+				<p class="eyebrow">Project status</p>
+				<h2 id="status-title">Barebones Astro + React starter.</h2>
+			</div>
+			<p>CMS wiring is intentionally not implemented until the blog model and content shape are clear.</p>
+		</section>
+	</main>
+</BaseLayout>

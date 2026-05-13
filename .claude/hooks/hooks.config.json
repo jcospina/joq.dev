@@ -1,0 +1,122 @@
+{
+	"dangerousCommands": {
+		"enabled": true,
+		"blockedPatterns": [
+			"rm\\s+-rf\\s+/",
+			"rm\\s+-rf\\s+~",
+			"rm\\s+-rf\\s+\\.",
+			"git\\s+push\\s+.*--force.*\\s+(main|master)",
+			"git\\s+push\\s+(-f|--force)\\s+(origin\\s+)?(main|master)",
+			"git\\s+reset\\s+--hard",
+			"DROP\\s+TABLE",
+			"DROP\\s+DATABASE",
+			"TRUNCATE\\s+TABLE",
+			":(\\)\\{\\s*:\\|:\\&\\s*\\};:)",
+			"mkfs\\.",
+			"dd\\s+if=.*\\s+of=/dev/",
+			">/dev/sda",
+			"chmod\\s+-R\\s+777\\s+/",
+			"curl\\s+.*\\|\\s*(bash|sh)",
+			"wget\\s+.*\\|\\s*(bash|sh)"
+		]
+	},
+	"sensitiveFiles": {
+		"enabled": true,
+		"protectedPatterns": [
+			"^\\.env$",
+			"^\\.env\\.",
+			"\\.git/",
+			"node_modules/",
+			"\\.pem$",
+			"\\.key$",
+			"\\.p12$",
+			"\\.pfx$",
+			"\\.secret$",
+			"\\.credentials$",
+			"bun\\.lock$",
+			"package-lock\\.json$",
+			"yarn\\.lock$",
+			"pnpm-lock\\.yaml$"
+		]
+	},
+	"enforcePackageManager": {
+		"enabled": true,
+		"allowed": "npm",
+		"alternatives": {
+			"yarn": {
+				"commands": ["yarn install", "yarn add", "yarn remove", "yarn run", "yarn dlx"],
+				"replacements": {
+					"yarn install": "npm install",
+					"yarn add": "npm install",
+					"yarn remove": "npm uninstall",
+					"yarn run": "npm run",
+					"yarn dlx": "npm exec"
+				}
+			},
+			"pnpm": {
+				"commands": [
+					"pnpm install",
+					"pnpm add",
+					"pnpm remove",
+					"pnpm run",
+					"pnpm exec",
+					"pnpm dlx"
+				],
+				"replacements": {
+					"pnpm install": "npm install",
+					"pnpm add": "npm install",
+					"pnpm remove": "npm uninstall",
+					"pnpm run": "npm run",
+					"pnpm exec": "npm exec",
+					"pnpm dlx": "npm exec"
+				}
+			},
+			"bun": {
+				"commands": ["bun install", "bun add", "bun remove", "bun run", "bunx"],
+				"replacements": {
+					"bun install": "npm install",
+					"bun add": "npm install",
+					"bun remove": "npm uninstall",
+					"bun run": "npm run",
+					"bunx": "npm exec"
+				}
+			}
+		}
+	},
+	"conventionalCommits": {
+		"enabled": true,
+		"prefixes": [
+			"feat",
+			"fix",
+			"chore",
+			"docs",
+			"style",
+			"refactor",
+			"perf",
+			"test",
+			"build",
+			"ci",
+			"revert"
+		],
+		"pattern": "^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)(\\(.+\\))?!?:\\s.+",
+		"requireScope": false,
+		"ticketPattern": null
+	},
+	"branchNaming": {
+		"enabled": true,
+		"pattern": "^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|hotfix|release)/[a-z0-9][a-z0-9-]+$",
+		"examples": ["feat/add-login", "fix/header-bug", "chore/update-deps"]
+	},
+	"prTestGate": {
+		"enabled": true,
+		"timeout": 60000,
+		"checks": [
+			{ "name": "typecheck", "command": "npm run typecheck" },
+			{ "name": "tests", "command": "npm test" }
+		]
+	},
+	"biomeLint": {
+		"enabled": true,
+		"extensions": [".ts", ".tsx", ".js", ".jsx", ".json", ".jsonc", ".css"]
+	}
+}
